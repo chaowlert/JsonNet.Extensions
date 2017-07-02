@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System;
+using Newtonsoft.Json.Linq;
 
 namespace JsonNet.Extensions
 {
@@ -14,7 +15,8 @@ namespace JsonNet.Extensions
 
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
-            return reader.Value;
+            var token = JToken.Load(reader);
+            return token.ToString(Formatting.None);
         }
 
         public override bool CanConvert(Type objectType)
