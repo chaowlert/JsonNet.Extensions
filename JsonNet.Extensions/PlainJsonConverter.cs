@@ -10,7 +10,10 @@ namespace JsonNet.Extensions
 
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
-            writer.WriteRawValue((string)value);
+            if (value == null)
+                writer.WriteNull();
+            else
+                writer.WriteRawValue((string)value);
         }
 
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
