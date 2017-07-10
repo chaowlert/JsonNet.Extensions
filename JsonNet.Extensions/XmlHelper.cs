@@ -41,10 +41,7 @@ namespace JsonNet.Extensions
             foreach (var nodes in group)
             {
                 var element = nodes.First();
-                if (nodes.Count() == 1)
-                    result.Add(element.Name.LocalName, element.ToJson());
-                else
-                    result.Add(element.Name.LocalName, nodes.ToJArray());
+                result.Add(element.Name.LocalName, nodes.Count() == 1 ? element.ToJson() : nodes.ToJArray());
             }
             return result;
         }
@@ -71,9 +68,11 @@ namespace JsonNet.Extensions
             return result;
         }
 
-        public static XDocument ToXml(this JToken json, bool noAttribute = false)
+        public static XDocument ToXml(this JToken json, bool noAttribute = false, string lang = null)
         {
             var result = json.ToXml("Root", noAttribute, 2);
+            if (!string.IsNullOrEmpty(lang) && result is XElement root)
+                root.SetAttributeValue(XNamespace.Xml + "lang", "th-TH");
             return new XDocument(result);
         }
 
