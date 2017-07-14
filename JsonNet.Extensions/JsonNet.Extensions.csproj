@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ExtendedContractResolver.cs" />
+    <Compile Include="JsonComparer.cs" />
     <Compile Include="JsonNetExtensions.cs" />
     <Compile Include="PlainJsonConverter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
